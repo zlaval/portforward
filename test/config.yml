@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: portforward-config
+data:
+  CONNECT_HOST: '10.111.81.229'
+  CONNECT_PORT: '5432'

@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: portforward
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: portforward
+  template:
+    metadata:
+      labels:
+        app: portforward
+    spec:
+      containers:
+        - name: portforward
+          image: zalerix/forwardstream:1.0.0
+          envFrom:
+            - configMapRef:
+                name: portforward-config
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: portforward-config
+data:
+  CONNECT_HOST: '10.111.81.229'
+  CONNECT_PORT: '5432'
